@@ -1,1 +1,29 @@
+name: WhatsApp Bot Notify
 
+on:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  send_message:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Send WhatsApp Message
+        env:
+          WHATSAPP_TOKEN: ${{ secrets.WHATSAPP_TOKEN }}
+          WHATSAPP_PHONE_NUMBER_ID: ${{ secrets.WHATSAPP_PHONE_NUMBER_ID }}
+          TO_PHONE_NUMBER: ${{ secrets.TO_PHONE_NUMBER }}
+          MESSAGE: "Commit by ${{ github.actor }} on ${{ github.ref_name }}"
+        run: node send-whatsapp.js
+        
