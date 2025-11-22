@@ -1,0 +1,13 @@
+{
+  "name": "whatsapp-cloud-bot",
+  "version": "1.0.0",
+  "description": "Simple WhatsApp bot using WhatsApp Cloud API",
+  "main": "send-whatsapp.js",
+  "scripts": {
+    "start": "node send-whatsapp.js"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7",
+    "dotenv": "^16.0.3"
+  }
+}
